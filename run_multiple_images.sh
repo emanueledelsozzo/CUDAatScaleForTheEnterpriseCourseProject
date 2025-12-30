@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-cd ../
 make clean build
 
 input_folder=datasets/aerials_pgm
