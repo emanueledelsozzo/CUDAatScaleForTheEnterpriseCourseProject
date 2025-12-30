@@ -97,7 +97,6 @@ The samples makefiles can take advantage of certain options:
 After building the project, you can run the program using the following command:
 
 ```bash
-- Copy code
 make run
 ```
 
@@ -106,14 +105,12 @@ This command will execute the compiled binary, applying edge detection to the in
 If you wish to run the binary directly with custom input/output files, you can use:
 
 ```bash
-- Copy code
 ./bin/edgeDetector -input datasets/Lena.pgm -output datasets/Lena_edgeDetector.pgm
 ```
 
 You can run this command to see the supported input arguments:
 
 ```bash
-- Copy code
 ./bin/edgeDetector -help
 ```
 
@@ -131,7 +128,6 @@ The code supports the following input arguments:
 To clean up the compiled binaries and other generated files, run:
 
 ```bash
-- Copy code
 make clean
 ```
 
