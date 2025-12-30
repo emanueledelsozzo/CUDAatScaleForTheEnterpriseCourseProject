@@ -1,6 +1,6 @@
 # Edge Detection using NVIDIA NPP with CUDA
 
-## Overview
+## Project Description
 
 This project demonstrates the use of NVIDIA Performance Primitives (NPP) library with CUDA to perform edge detection. The goal is to utilize GPU acceleration to efficiently detect the edges of a given image, leveraging the computational power of modern GPUs. The project is a part of the CUDA at Scale for the Enterprise course and serves as a way for understanding how to implement basic image processing operations using CUDA and NPP.
 
