@@ -10,7 +10,7 @@ This project demonstrates the use of NVIDIA Performance Primitives (NPP) library
 This folder will hold the binary/executable code that is built automatically or manually.
 
 ```datasets/```
-This folder contains example datasets and a preprocessing script. Specifically, it includes the aerials dataset (original_aerials.zip) downloaded from the USC Viterbi School of Engineering's SIPI Image Database (https://sipi.usc.edu/database/database.php?volume=aerials), a pgm version (aerials_pgm), a version processed by the edge detector application (aerials_out), and a Lena pgm image (Lena.pgm). This folder also contains a Python script to convert images to pgm (convert_to_pgm.py).
+This folder contains example datasets and a preprocessing script. Specifically, it includes a pgm version of the aerials dataset (aerials_pgm), whose original version is available from the USC Viterbi School of Engineering's SIPI Image Database (https://sipi.usc.edu/database/database.php?volume=aerials), a version processed by the edge detector application (aerials_out), and a Lena pgm image (Lena.pgm). This folder also contains a Python script to convert images to pgm (convert_to_pgm.py).
 
 ```Common/```
 This folder contains CUDA libraries.
