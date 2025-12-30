@@ -1,34 +1,34 @@
-# Image Rotation using NVIDIA NPP with CUDA
+# Edge Detection using NVIDIA NPP with CUDA
 
 ## Overview
 
-This project demonstrates the use of NVIDIA Performance Primitives (NPP) library with CUDA to perform image rotation. The goal is to utilize GPU acceleration to efficiently rotate a given image by a specified angle, leveraging the computational power of modern GPUs. The project is a part of the CUDA at Scale for the Enterprise course and serves as a template for understanding how to implement basic image processing operations using CUDA and NPP.
+This project demonstrates the use of NVIDIA Performance Primitives (NPP) library with CUDA to perform edge detection. The goal is to utilize GPU acceleration to efficiently detect the edges of a given image, leveraging the computational power of modern GPUs. The project is a part of the CUDA at Scale for the Enterprise course and serves as a way for understanding how to implement basic image processing operations using CUDA and NPP.
 
 ## Code Organization
 
 ```bin/```
-This folder should hold all binary/executable code that is built automatically or manually. Executable code should have use the .exe extension or programming language-specific extension.
+This folder will hold the binary/executable code that is built automatically or manually.
 
-```data/```
-This folder should hold all example data in any format. If the original data is rather large or can be brought in via scripts, this can be left blank in the respository, so that it doesn't require major downloads when all that is desired is the code/structure.
+```datasets/```
+This folder contains example datasets and a preprocessing script. Specifically, it includes the aerials dataset (original_aerials.zip) downloaded from the USC Viterbi School of Engineering's SIPI Image Database (https://sipi.usc.edu/database/database.php?volume=aerials), a pgm version (aerials_pgm), a version processed by the edge detector application (aerials_out), and a Lena pgm image (Lena.pgm). This folder also contains a Python script to convert images to pgm (convert_to_pgm.py).
 
-```lib/```
-Any libraries that are not installed via the Operating System-specific package manager should be placed here, so that it is easier for inclusion/linking.
+```Common/```
+This folder contains CUDA libraries.
 
 ```src/```
-The source code should be placed here in a hierarchical fashion, as appropriate.
+This folder contains the source code.
 
 ```README.md```
-This file should hold the description of the project so that anyone cloning or deciding if they want to clone this repository can understand its purpose to help with their decision.
+This file holds the description of the project.
 
-```INSTALL```
-This file should hold the human-readable set of instructions for installing the code so that it can be executed. If possible it should be organized around different operating systems, so that it can be done by as many people as possible with different constraints.
+```Makefile```
+A Makefile to build the project's code.
 
-```Makefile or CMAkeLists.txt or build.sh```
-There should be some rudimentary scripts for building your project's code in an automatic fashion.
+```run_single_image.sh```
+An example script to run the executable code on a single image.
 
-```run.sh```
-An optional script used to run your executable code, either with or without command-line arguments.
+```run_multiple_images.sh```
+An example script to run the executable code on multiple images from the datasets folder.
 
 ## Key Concepts
 
@@ -49,7 +49,7 @@ x86_64, ppc64le, armv7l
 ## CUDA APIs involved
 
 ## Dependencies needed to build/run
-[FreeImage](../../README.md#freeimage), [NPP](../../README.md#npp)
+[FreeImage](https://freeimage.sourceforge.io), [NPP](https://developer.nvidia.com/npp)
 
 ## Prerequisites
 
@@ -71,7 +71,6 @@ To build/examine all the samples at once, the complete solution files should be 
 ### Linux
 The Linux samples are built using makefiles. To use the makefiles, change the current directory to the sample directory you wish to build, and run make:
 ```
-$ cd <sample_dir>
 $ make
 ```
 The samples makefiles can take advantage of certain options:
@@ -98,26 +97,45 @@ The samples makefiles can take advantage of certain options:
 After building the project, you can run the program using the following command:
 
 ```bash
-Copy code
+- Copy code
 make run
 ```
 
-This command will execute the compiled binary, rotating the input image (Lena.png) by 45 degrees, and save the result as Lena_rotated.png in the data/ directory.
+This command will execute the compiled binary, applying edge detection to the input image (Lena.pgm), and save the result as Lena_edgeDetector.pgm in the datasets/ folder.
 
 If you wish to run the binary directly with custom input/output files, you can use:
 
 ```bash
 - Copy code
-./bin/imageRotationNPP --input data/Lena.png --output data/Lena_rotated.png
+./bin/edgeDetector -input datasets/Lena.pgm -output datasets/Lena_edgeDetector.pgm
+```
+
+You can run this command to see the supported input arguments:
+
+```bash
+- Copy code
+./bin/edgeDetector -help
+```
+
+The code supports the following input arguments:
+
+```
+-input INPUT_FILE: path to input image [required]
+-output OUTPUT_FILE: path to output image [default: INPUT_FILE_edgeDetector.pgm]
+-low_threshold=LOW_THRESHOLD: low hysteresis threshold [default: 85]
+-high_threshold=HIGH_THRESHOLD: high hysteresis threshold [default: 255]
+-kernel KERNEL: differential filter - the supported kernels sobel and scharr [default: sobel]
 ```
 
 - Cleaning Up
 To clean up the compiled binaries and other generated files, run:
-
 
 ```bash
 - Copy code
 make clean
 ```
 
-This will remove all files in the bin/ directory.
+This will remove all files in the bin/ and build/ folders.
+
+## References (for more details)
+[NPP FilterCannyBorder](https://docs.nvidia.com/cuda/archive/9.2/npp/group__image__filter__canny__border.html) [Canny Edge Detector](https://en.wikipedia.org/wiki/Canny_edge_detector)
