@@ -4,6 +4,8 @@
 
 This project demonstrates the use of NVIDIA Performance Primitives (NPP) library with CUDA to perform edge detection. The goal is to utilize GPU acceleration to efficiently detect the edges of a given image, leveraging the computational power of modern GPUs. The project is a part of the CUDA at Scale for the Enterprise course and serves as a way for understanding how to implement basic image processing operations using CUDA and NPP.
 
+This project has been evaluated on the aerials dataset available from the USC Viterbi School of Engineering's SIPI Image Database (https://sipi.usc.edu/database/database.php?volume=aerials). The executable code allows the user to specify not only the input and output file, but also the low and high hysteresis thresholds and differential filter to apply.
+
 ## Code Organization
 
 ```bin/```
